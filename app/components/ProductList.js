@@ -13,7 +13,7 @@ export default function ProductList({ searchQuery, selectedConditions, priceRang
   useEffect(() => {
     async function fetchProducts() {
       try {
-        const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:5000";
+        const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
         const url = `${baseUrl}/listing${searchQuery ? `?q=${encodeURIComponent(searchQuery)}` : ""}`;
         const response = await fetch(url);
         if (!response.ok) {

@@ -34,7 +34,7 @@ export default function ProductDetailPage() {
     if (!params?.id) return;
 
     const fetchProduct = async () => {
-      const baseUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
+      const baseUrl = process.env.NEXT_PUBLIC_API_URL ;
       try {
         const res = await fetch(`${baseUrl}/listing/${params.id}`);
         const data = await res.json();
@@ -53,7 +53,7 @@ export default function ProductDetailPage() {
 
   useEffect(() => {
     const fetchRelatedProducts = async () => {
-      const baseUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
+      const baseUrl = process.env.NEXT_PUBLIC_API_URL ;
       try {
         const res = await fetch(`${baseUrl}/listing`);
         const data = await res.json();
