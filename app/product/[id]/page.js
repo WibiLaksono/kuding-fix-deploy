@@ -34,8 +34,9 @@ export default function ProductDetailPage() {
     if (!params?.id) return;
 
     const fetchProduct = async () => {
+      const baseUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
       try {
-        const res = await fetch(`http://localhost:5000/listing/${params.id}`);
+        const res = await fetch(`${baseUrl}/listing/${params.id}`);
         const data = await res.json();
         if (res.status === 404) {
           setProduct(null);
@@ -52,8 +53,9 @@ export default function ProductDetailPage() {
 
   useEffect(() => {
     const fetchRelatedProducts = async () => {
+      const baseUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
       try {
-        const res = await fetch("http://localhost:5000/listing");
+        const res = await fetch(`${baseUrl}/listing`);
         const data = await res.json();
         setRelatedProducts(
           data.slice(0, 10).map((item) => ({

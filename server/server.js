@@ -13,7 +13,7 @@ const PORT = process.env.PORT || 5000;
 
 app.use(
   cors({
-    origin: true,
+    origin: true, // Izinkan semua origin untuk pengembangan
     credentials: true,
   })
 );
@@ -25,7 +25,7 @@ const sequelize = new Sequelize(
   process.env.DB_USER,
   process.env.DB_PASSWORD,
   {
-    host: process.env.DB_HOST || "localhost",
+    host: process.env.DB_HOST,
     dialect: "mysql",
   }
 );
@@ -202,6 +202,7 @@ app.get("/listing", async (req, res) => {
       }],
     });
 
+    // console.log("Listings Data:", JSON.stringify(listings, null, 2)); // Debugging untuk melihat hasil query
     res.json(listings);
   } catch (error) {
     console.error("Error fetching listings:", error);
@@ -249,13 +250,8 @@ app.get("/transactions", async (_, res) => {
     res.status(500).json({ error: error.message });
   }
 });
-// Tambahin di server.js (atau app.js, sesuai kode lo)
-app.get('/health', (req, res) => {
-  res.status(200).send('OK'); // <-- HARUS status 200!
-});
 
 // Start server
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });
-
