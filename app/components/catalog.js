@@ -16,7 +16,7 @@ export default function Catalog() {
       try {
         const baseUrl =
           process.env.NEXT_PUBLIC_API_BASE_URL ;
-        const response = await fetch(`${baseUrl}/listing`);
+        const response = await fetch(`${baseUrl}listing`);
         const data = await response.json();
 
         console.log("Fetched Listings:", data);

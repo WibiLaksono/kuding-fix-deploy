@@ -32,7 +32,7 @@ export default function Navbar() {
     if (token) {
       const fetchUser = async () => {
         try {
-          const res = await fetch(`${baseUrl}/users/me`, {
+          const res = await fetch(`${baseUrl}users/me`, {
             headers: { Authorization: `Bearer ${token}` },
           });
 
@@ -62,9 +62,9 @@ export default function Navbar() {
     const formData = new FormData(e.target);
     const credentials = Object.fromEntries(formData);
     const baseUrl =
-      process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:5000";
+      process.env.NEXT_PUBLIC_API_BASE_URL;
     try {
-      const res = await fetch(`${baseUrl}/users/login`, {
+      const res = await fetch(`${baseUrl}users/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(credentials),

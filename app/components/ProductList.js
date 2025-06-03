@@ -14,7 +14,7 @@ export default function ProductList({ searchQuery, selectedConditions, priceRang
     async function fetchProducts() {
       try {
         const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
-        const url = `${baseUrl}/listing${searchQuery ? `?q=${encodeURIComponent(searchQuery)}` : ""}`;
+        const url = `${baseUrl}listing${searchQuery ? `?q=${encodeURIComponent(searchQuery)}` : ""}`;
         const response = await fetch(url);
         if (!response.ok) {
           throw new Error("Failed to fetch products");

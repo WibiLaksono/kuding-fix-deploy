@@ -29,14 +29,13 @@ export default function ProductDetailPage() {
   const router = useRouter();
   const [product, setProduct] = useState(null);
   const [relatedProducts, setRelatedProducts] = useState([]);
+  const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL ;
 
   useEffect(() => {
     if (!params?.id) return;
-
     const fetchProduct = async () => {
-      const baseUrl = process.env.NEXT_PUBLIC_API_URL ;
       try {
-        const res = await fetch(`${baseUrl}/listing/${params.id}`);
+        const res = await fetch(`${baseUrl}listing/${params.id}`);
         const data = await res.json();
         if (res.status === 404) {
           setProduct(null);
@@ -49,13 +48,12 @@ export default function ProductDetailPage() {
     };
 
     fetchProduct();
-  }, [params?.id]);
+  }, [params?.id, baseUrl]);
 
   useEffect(() => {
     const fetchRelatedProducts = async () => {
-      const baseUrl = process.env.NEXT_PUBLIC_API_URL ;
       try {
-        const res = await fetch(`${baseUrl}/listing`);
+        const res = await fetch(`${baseUrl}listing`);
         const data = await res.json();
         setRelatedProducts(
           data.slice(0, 10).map((item) => ({
@@ -68,7 +66,7 @@ export default function ProductDetailPage() {
       }
     };
     fetchRelatedProducts();
-  }, []);
+  }, [baseUrl]);
 
   if (!product) {
     return <div className="text-center py-10">Loading product data...</div>;
